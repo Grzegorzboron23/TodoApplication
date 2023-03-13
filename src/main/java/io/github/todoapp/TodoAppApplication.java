@@ -1,5 +1,6 @@
 package io.github.todoapp;
 
+import io.github.todoapp.model.TaskRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ public class TodoAppApplication  {
 
 
 	@Bean
-	Validator validator(){
-	return 	new LocalValidatorFactoryBean();
+	Validator validator() {
+return new LocalValidatorFactoryBean();
 	}
 }

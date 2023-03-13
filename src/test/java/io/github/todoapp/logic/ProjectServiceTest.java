@@ -5,7 +5,6 @@ package io.github.todoapp.logic;
 import io.github.todoapp.TaskConfigurationProperties;
 import io.github.todoapp.model.*;
 import io.github.todoapp.model.projection.GroupReadModel;
-import lombok.val;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

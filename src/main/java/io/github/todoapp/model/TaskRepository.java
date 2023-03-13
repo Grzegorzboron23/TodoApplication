@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface TaskRepository {
     List<Task> findAll();
-     Optional<Task> findById(Integer i);
+     Optional<Task> findById(Integer id);
     Task save(Task entity);
     Page<Task> findAll(Pageable page);
 

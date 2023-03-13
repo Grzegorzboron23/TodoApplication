@@ -7,13 +7,13 @@ import io.github.todoapp.model.TaskGroupRepository;
 import io.github.todoapp.model.TaskRepository;
 import io.github.todoapp.model.projection.GroupReadModel;
 import io.github.todoapp.model.projection.GroupWriteModel;
-import org.springframework.stereotype.Service;
+
 
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+
 public class TaskGroupService {
 
     private TaskRepository taskRepository;
