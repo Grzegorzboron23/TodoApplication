@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class GroupWriteModel {
-    private String desciption;
+    private String description;
     private Set<GroupTaskWriteModel> tasks;
 
     public TaskGroup toGroup(){
         var result = new TaskGroup();
-        result.setDescription(desciption);
+        result.setDescription(description);
         result.setTasks(
-                tasks.stream().map(GroupTaskWriteModel::toTask)
+                tasks.stream().map(source -> source.toTask(result))
                         .collect(Collectors.toSet())
         );
         return result;

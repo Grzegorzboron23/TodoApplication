@@ -37,7 +37,16 @@ import java.util.Set;
    public Task(String description,LocalDateTime deadline){
        this.description= description;
        this.deadline = deadline;
+       this.group = null;
    }
+
+    public Task(String description,LocalDateTime deadline, TaskGroup group){
+        this.description= description;
+        this.deadline = deadline;
+        if(group != null){
+            this.group = group;
+        }
+    }
 
 
 

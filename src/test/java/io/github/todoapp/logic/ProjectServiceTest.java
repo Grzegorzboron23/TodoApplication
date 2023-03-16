@@ -31,7 +31,7 @@ class ProjectServiceTest {
 
         TaskConfigurationProperties mockConfig = configurationReturning(false);
 
-        var toTest = new ProjectService( null,  mockGroupRepository, mockConfig);
+        var toTest = new ProjectService( null,  mockGroupRepository, mockConfig,null);
 
             // when
         var exception = catchThrowable(() -> toTest.createGroup(LocalDateTime.now(),0));
@@ -50,7 +50,7 @@ class ProjectServiceTest {
         var mockRepository = mock(ProjectRepository.class);
         when(mockRepository.findById(anyInt())).thenReturn(Optional.empty());
 
-        var toTest = new ProjectService( mockRepository, null, mockConfig);
+        var toTest = new ProjectService( mockRepository, null, mockConfig,null);
 
         // when
         var exception = catchThrowable(() -> toTest.createGroup(LocalDateTime.now(),0));
@@ -73,7 +73,7 @@ class ProjectServiceTest {
 
 
 
-        var toTest = new ProjectService( mockRepository, null, mockConfig);
+        var toTest = new ProjectService( mockRepository, null, mockConfig,null);
 
         // when
         var exception = catchThrowable(() -> toTest.createGroup(LocalDateTime.now(),0));
@@ -86,19 +86,21 @@ class ProjectServiceTest {
     @Test
     @DisplayName("should create new group from project")
     void createGroup_configurationOk_existingProject_createAnsSavesGroup(){
+        //given
         var today = LocalDate.now().atStartOfDay();
-
+        // and
         var project  = projectWith("bar", Set.of(-1,-2));
         var mockRepository = mock(ProjectRepository.class);
         when(mockRepository.findById(anyInt())).thenReturn(Optional.of(project)
         );
 
         InMemoryGroupRepository inMemoryGroupRepo =InMemoryGroupRepository();
+        var serviceWithInMemoRepo = dummyGroupService(inMemoryGroupRepo);
         int countBeforeCall = inMemoryGroupRepo.count();
 
         TaskConfigurationProperties mockConfig = configurationReturning(true);
-
-        var toTest = new ProjectService( mockRepository,  inMemoryGroupRepo, mockConfig);
+        // system under tes
+        var toTest = new ProjectService( mockRepository,  inMemoryGroupRepo, mockConfig,serviceWithInMemoRepo);
 
        GroupReadModel result = toTest.createGroup(today, 1);
 
@@ -193,6 +195,10 @@ class ProjectServiceTest {
         var mockConfig = mock(TaskConfigurationProperties.class);
         when(mockConfig.getTemplate()).thenReturn(mockTemplate);
         return mockConfig;
+    }
+
+    private TaskGroupService dummyGroupService(final InMemoryGroupRepository inMemoryGroupRepository){
+        return new TaskGroupService(inMemoryGroupRepository, null);
     }
 
 
