@@ -20,9 +20,12 @@ import java.util.List;
     @Override
     @Query(nativeQuery = true, value ="select count(*) >0 from tasks where id=?1")
     boolean existsById(@Param("id")Integer id);
-    // gdy select * from zwracamy task
+
 
     @Override
     boolean existsByDoneIsFalseAndGroup_Id(Integer groupId);
 
+
+   @Override
+   List<Task> findAllByGroup_Id(Integer groupId);
 }

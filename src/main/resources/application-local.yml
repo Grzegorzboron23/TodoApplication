@@ -7,7 +7,12 @@
       jpa:
         hibernate:
           ddl-auto: validate
-    #validate
+
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: '*'
 
 
 
