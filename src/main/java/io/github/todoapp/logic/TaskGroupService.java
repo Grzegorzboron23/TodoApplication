@@ -2,6 +2,7 @@ package io.github.todoapp.logic;
 
 
 
+import io.github.todoapp.model.Project;
 import io.github.todoapp.model.TaskGroup;
 import io.github.todoapp.model.TaskGroupRepository;
 import io.github.todoapp.model.TaskRepository;
@@ -24,7 +25,11 @@ public class TaskGroupService {
     }
 
     public GroupReadModel createGroup(GroupWriteModel source){
-       TaskGroup result = repository.save(source.toGroup());
+       return createGroup(source, null);
+    }
+
+    public GroupReadModel createGroup(GroupWriteModel source, final Project project){
+        TaskGroup result = repository.save(source.toGroup(project));
         return new GroupReadModel(result);
     }
 

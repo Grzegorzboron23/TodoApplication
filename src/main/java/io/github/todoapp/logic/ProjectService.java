@@ -5,6 +5,7 @@ import io.github.todoapp.model.*;
 import io.github.todoapp.model.projection.GroupReadModel;
 import io.github.todoapp.model.projection.GroupTaskWriteModel;
 import io.github.todoapp.model.projection.GroupWriteModel;
+import io.github.todoapp.model.projection.ProjectWriteModel;
 import lombok.AllArgsConstructor;
 
 
@@ -21,13 +22,13 @@ public class ProjectService {
 
 
 
-    private List<Project> readAll(){
+    public List<Project> readAll(){
         return repository.findAll();
 
     }
 
-    public Project save(final Project toSave){
-        return repository.save(toSave);
+    public Project save(final ProjectWriteModel toSave){
+        return repository.save(toSave.toProject());
     }
 
     public GroupReadModel createGroup(LocalDateTime deadline, int projectId){
@@ -50,7 +51,7 @@ public class ProjectService {
                                         }
                                      ).collect(Collectors.toSet())
                      );
-                    return taskGroupService.createGroup(targetGroup);
+                    return taskGroupService.createGroup(targetGroup, project);
                  }).orElseThrow(() -> new IllegalArgumentException("Project with given id not Found")) ;
         return result;
     }
