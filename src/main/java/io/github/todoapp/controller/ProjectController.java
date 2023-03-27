@@ -57,7 +57,7 @@ public class ProjectController {
                 @ModelAttribute("project") ProjectWriteModel current,
                 Model model,
                 @PathVariable int id,
-                @DateTimeFormat(pattern = "yyy-MM-dd'T'HH:mm") LocalDateTime deadline
+                @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime deadline
         ){
         try{
             service.createGroup(deadline,id);
