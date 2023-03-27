@@ -27,7 +27,11 @@ This the task management app that makes it easy to stay organized and manage you
 Users can create new tasks and check which od them are  done.
 User can create task groups from previously given tasks.
 
+# Project page
 ![336647226_3017007745271605_4879256685806186098_n](https://user-images.githubusercontent.com/81915391/227904344-bf4abc67-f674-4b0d-b1df-d90a3f362c3f.png)
+
+# Main Page 
+
 ![337199803_1248801802726134_2131836165953675077_n](https://user-images.githubusercontent.com/81915391/227904349-ec3e42d1-3a50-4a8b-a0e6-645775b370eb.png)
 
 
